@@ -7,7 +7,7 @@ require_once('exacttarget_soap_client.php');
  *
  * LICENSE: 
  *
- * @copyright  2011 Fanmail Marketing
+ * @copyright  2011 Nick Holdren
  * @license    
  * @version    1.0
  * @link       
@@ -19,7 +19,7 @@ require_once('exacttarget_soap_client.php');
  *
  * A class for consuming the ExactTarget API
  *
- * @copyright  2011 Fanmail Marketing
+ * @copyright  2011 Nick Holdren
  * @license    
  * @version    Release: 1.0
  * @link      
