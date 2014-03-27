@@ -47,28 +47,38 @@ class ExactTarget{
 	);
 	
 	//ExactTarget SOAP API endpoint
-	public static $wsdl = 'https://on.exacttarget.com/etframework.wsdl';
+	//WSDL instances
+    public static $instances = array(
+        'default' => 'https://webservice.exacttarget.com/etframework.wsdl',
+        's4' => 'https://webservice.s4.exacttarget.com/etframework.wsdl',
+        's6' => 'https://webservice.s6.exacttarget.com/etframework.wsdl',
+        'support' => 'https://webservice.test.exacttarget.com/etframework.wsdl'
+    );
 
 	//The ExactTarget client object
 	public $client;
 	
 	protected $async_options;
 
-	/**
-	* Handles the request
-	*
-	* @throws Some_Exception_Class If something interesting cannot happen
-	* @return Integer The ID of the object
-	*/ 
-	public function __construct($username, $password){
+    /**
+    * Constructor for the ExactTarget class
+    *
+    * Builds the ExactTarget client object
+    * 
+    * @param username String The ExactTarget account's username
+    * @param password String The ExactTraget account's password
+    * @param instance String The ExactTraget account's instance, in login URL
+    */
+	public function __construct($username, $password, $instance = 'default'){){
 		
 		if(isset($username, $password)){
 		
 			$this->username = $username;
 			$this->password = $password;
+			$wsdl = self::$instances[$instance];
 			
 			//Create ExactTarget client
-			$this->client = new ExactTargetSoapClient(self::$wsdl, array('trace'=>1));
+			$this->client = new ExactTargetSoapClient($wsdl, array('trace'=>1));
 			$this->client->username = $this->username;
 			$this->client->password = $this->password;
 			
