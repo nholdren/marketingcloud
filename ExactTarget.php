@@ -58,6 +58,7 @@ class ExactTarget{
 
 	//The ExactTarget client object
 	public $client;
+  public $mid;
 
 	protected $async_options;
 
@@ -69,8 +70,9 @@ class ExactTarget{
     * @param username String The ExactTarget account's username
     * @param password String The ExactTraget account's password
     * @param instance String The ExactTraget account's instance, in login URL
+    * @param mid String The ExactTarget business unit ID, for on behalf of functionality
     */
-	public function __construct($username, $password, $instance = 'default'){
+	public function __construct($username, $password, $instance = 'default', $mid = null){
 
 		if(isset($username, $password)){
 
@@ -82,6 +84,8 @@ class ExactTarget{
 			$this->client = new ExactTargetSoapClient($wsdl, array('trace'=>1));
 			$this->client->username = $this->username;
 			$this->client->password = $this->password;
+
+      $this->mid = $mid;
 
 		}
 
@@ -107,12 +111,16 @@ class ExactTarget{
 			$this->async_options->RequestTypeSpecified = true;
 
 			$ar = self::_buildAsyncOptions($async_options);
-
-
 		}else{
-
 			$this->async_options = NULL;
 		}
+
+    //Set the object's Client ID to determine which business unit to act on
+    if($this->mid){
+      $objClient = new ExactTarget_ClientID();
+      $objClient->ID = $this->mid;
+      $object->Client = $objClient;
+    }
 
 		//Select the method
 		switch(strtolower($method)){
