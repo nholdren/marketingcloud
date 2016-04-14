@@ -50,9 +50,12 @@ class ExactTarget{
 	//WSDL instances
     public static $instances = array(
         'default' => 'https://webservice.exacttarget.com/etframework.wsdl',
+        's2' => 'https://webservice.s2.exacttarget.com/etframework.wsdl',
+        's3' => 'https://webservice.s3.exacttarget.com/etframework.wsdl',
         's4' => 'https://webservice.s4.exacttarget.com/etframework.wsdl',
         's6' => 'https://webservice.s6.exacttarget.com/etframework.wsdl',
         's7' => 'https://webservice.s7.exacttarget.com/etframework.wsdl',
+        's8' => 'https://webservice.s8.exacttarget.com/etframework.wsdl',
         'support' => 'https://webservice.test.exacttarget.com/etframework.wsdl'
     );
 

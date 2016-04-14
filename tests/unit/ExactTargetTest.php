@@ -59,7 +59,7 @@ class ExactTargetTest extends \Codeception\TestCase\Test
 
         $this->assertTrue(is_array($et::$instances), "instances property is an array");
 
-        $this->assertEquals(5, sizeof($et::$instances), "the number of server instances is 5");
+        $this->assertEquals(8, sizeof($et::$instances), "the number of server instances is 8");
     }
 
     public function testMethodsProperty()
